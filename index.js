@@ -1,7 +1,7 @@
 const container = document.querySelector(".data-container");
 
 // function to generate bars
-function generatebars(num = 20) {
+function generatebars(num = 15) {
 	
 //for loop to generate 20 bars
 for (let i = 0; i < num; i += 1) {
@@ -41,9 +41,12 @@ for (let i = 0; i < num; i += 1) {
 
 // asynchronous function to perform "Selection Sort"
 async function SelectionSort(delay = 300) {
+
 let bars = document.querySelectorAll(".bar");
 // Assign 0 to min_idx
 var min_idx = 0;
+disable();
+	 document.getElementById("Button2").style.backgroundColor = "#6f459e";
 for (var i = 0; i < bars.length; i += 1) {
 
 	// Assign i to min_idx
@@ -128,18 +131,20 @@ function disable()
 {
 // To disable the button "Generate New Array"
 document.getElementById("Button1").disabled = true;
-document.getElementById("Button1").style.backgroundColor = "#d8b6ff";
+document.getElementById("Button1").style.backgroundColor = "grey";
 
 // To disable the button "Selection Sort"
-document.getElementById("Button2 ").disabled = true;
-document.getElementById("Button2").style.backgroundColor = "#d8b6ff";
+document.getElementById("Button2").disabled = true;
+document.getElementById("Button2").style.backgroundColor = "grey";
 
 document.getElementById("Button3").disabled = true;
-document.getElementById("Button3").style.backgroundColor = "#d8b6ff";
-document.getElementById("Button4")
-.disabled = true;
-document.getElementById("Button4")
-.style.backgroundColor = "#d8b6ff";
+document.getElementById("Button3").style.backgroundColor = "grey";
+document.getElementById("Button4").disabled = true;
+
+document.getElementById("Button4").style.backgroundColor = "grey";
+document.getElementById("Button5").disabled = true;
+
+document.getElementById("Button5").style.backgroundColor = "grey";
 
 
 }
@@ -151,6 +156,10 @@ document.getElementById("Button4")
 
 
 async function BubbleSort(delay = 300) {
+
+     disable();
+	 document.getElementById("Button3").style.backgroundColor = "#6f459e";
+
 	var bars = document.querySelectorAll(".bar");
 
 	// BubbleSort Algorithm
@@ -214,7 +223,10 @@ async function BubbleSort(delay = 300) {
 
 // Asynchronous function to perform "Insertion Sort"
 async function InsertionSort(delay = 600) {
+	disable();
+	document.getElementById("Button4").style.backgroundColor = "#6f459e";
 let bars = document.querySelectorAll(".bar");
+
 
 // Provide lightgreen colour to 0th bar
 bars[0].style.backgroundColor = " rgb(49, 226, 13)";
@@ -310,12 +322,12 @@ document.getElementById("Button4")
 
 
 
-async function lometo_partition(l, r, delay = 700) {
+async function partition(l, r, delay = 700) {
 var bars = document.querySelectorAll(".bar");
 
 // Storing the value of pivot element
-var pivot =
-Number(bars[r].childNodes[0].innerHTML);
+var pivot =Number(bars[r].childNodes[0].innerHTML);
+
 var i = l - 1;
 bars[r].style.backgroundColor = "red";
 // document.getElementsByClassName("range")[0].innerText = `[${l},${r}]`;
@@ -331,8 +343,8 @@ for (var j = l; j <= r - 1; j++) {
 		resolve();
 	}, delay)
 	);
-	var value =
-	Number(bars[j].childNodes[0].innerHTML);
+	var value =Number(bars[j].childNodes[0].innerHTML);
+	
 
 	// To compare value of two bars
 	if (value < pivot) {
@@ -341,8 +353,8 @@ for (var j = l; j <= r - 1; j++) {
 	var temp2 = bars[i].childNodes[0].innerText;
 	bars[i].style.height = bars[j].style.height;
 	bars[j].style.height = temp1;
-	bars[i].childNodes[0].innerText =
-	bars[j].childNodes[0].innerText;
+	bars[i].childNodes[0].innerText =bars[j].childNodes[0].innerText;
+	
 	bars[j].childNodes[0].innerText = temp2;
 	bars[i].style.backgroundColor = "orange";
 	if (i != j) bars[j].style.backgroundColor = "pink";
@@ -360,8 +372,8 @@ var temp1 = bars[i].style.height;
 var temp2 = bars[i].childNodes[0].innerText;
 bars[i].style.height = bars[r].style.height;
 bars[r].style.height = temp1;
-bars[i].childNodes[0].innerText =
-bars[r].childNodes[0].innerText;
+bars[i].childNodes[0].innerText =bars[r].childNodes[0].innerText;
+
 bars[r].childNodes[0].innerText = temp2;
 bars[r].style.backgroundColor = "pink";
 bars[i].style.backgroundColor = "green";
@@ -373,32 +385,36 @@ await new Promise((resolve) =>
 	}, delay * 3)
 );
 
-for (var k = 0; k < 20; k++)
-bars[k].style.backgroundColor = " rgb(49, 226, 13)";
+for (var k = 0; k < 15; k++){
+	bars[k].style.backgroundColor = " blue";
+}
+
 return i;
 }
 
 // Asynchronous QuickSort function
 async function QuickSort(l, r, delay = 100) {
+	disable();
+	document.getElementById("Button5").style.backgroundColor = "#6f459e";
 if (l < r) {
 	// Storing the index of pivot element after partition
-	var pivot_idx = await lometo_partition(l, r);
+	var pivot_idx = await partition(l, r);
 	// Recursively calling quicksort for left partition
-	await QuickSort(l, pivot_idx - 1);
+	await QuickSort(l, pivot_idx-1);
 	// Recursively calling quicksort for right partition
 	await QuickSort(pivot_idx + 1, r);
 }
-document.getElementById("Button1")
-.disabled = false;
-document.getElementById("Button1")
-.style.backgroundColor = "#6f459e";
+document.getElementById("Button1").disabled = false;
+
+document.getElementById("Button1").style.backgroundColor = "#6f459e";
+
 
 // To enable the button
-// "Insertion Sort" after final(sorted)
-document.getElementById("Button5")
-.disabled = false;
-document.getElementById("Button5")
-.style.backgroundColor = "#6f459e";
+// "Quick Sort" after final(sorted)
+document.getElementById("Button5").disabled = false;
+
+document.getElementById("Button5").style.backgroundColor = "#6f459e";
+
 }
 
 
@@ -425,76 +441,5 @@ document.getElementById("Button5")
 
 
 
-
-async function mergeArray(start, end) {
-	var bars = document.querySelectorAll(".bar");
-	bars[end].style.backgroundColor = "red";
-    let mid = parseInt((start + end) >> 1);
-    let start1 = start, start2 = mid + 1
-    let end1 = mid, end2 = end
-     
-    // Initial index of merged subarray
-    let index = start
- 
-    while (start1 <= end1 && start2 <= end2) {
-        if (arr[start1] <= arr[start2]) {
-            itmd[index] = arr[start1]
-            index = index + 1
-            start1 = start1 + 1;
-        }
-        else if(arr[start1] > arr[start2]) {
-            itmd[index] = arr[start2]
-            index = index + 1
-            start2 = start2 + 1;
-        }
-    }
- 
-    // Copy the remaining elements of
-    // arr[], if there are any
-    while (start1 <= end1) {
-        itmd[index] = arr[start1]
-        index = index + 1
-        start1 = start1 + 1;
-    }
- 
-    while (start2 <= end2) {
-        itmd[index] = arr[start2]
-        index = index + 1
-        start2 = start2 + 1;
-    }
- 
-    index = start
-    while (index <= end) {
-        arr[index] = itmd[index];
-        index++;
-    }
-}
-async function mergeSort(start,end) {
-	if (start < end) {
-        let mid = parseInt((start + end) >> 1)
-        await mergeSort(start, mid)
-        await mergeSort(mid + 1, end)
-        await mergeArray(start, end)
-     
-        // Waiting time is 800ms
-        await new Promise((resolve) =>
-	setTimeout(() => {
-		resolve();
-	}, 800));
-    }
-
-
-	document.getElementById("Button1")
-	.disabled = false;
-	document.getElementById("Button1")
-	.style.backgroundColor = "#6f459e";
-	
-	// To enable the button
-	// "Insertion Sort" after final(sorted)
-	document.getElementById("Button6")
-	.disabled = false;
-	document.getElementById("Button6")
-	.style.backgroundColor = "#6f459e";
-	}
 
 
