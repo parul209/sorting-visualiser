@@ -6,7 +6,7 @@ function generatebars(num = 15) {
 //for loop to generate 20 bars
 for (let i = 0; i < num; i += 1) {
 
-	// To generate random values from 1 to 100
+	// To Generate random values from 1 to 100
 	const value = Math.floor(Math.random() * 100) + 1;
 	
 	// To create element "div"
